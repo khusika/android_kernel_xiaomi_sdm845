@@ -29,6 +29,11 @@
 #define CAM_IR_GET_POWER_STATE                  (CAM_EXT_OPCODE_BASE + 0x3)
 #define CAM_IR_LUMA_READ                          (CAM_EXT_OPCODE_BASE + 0x4)
 
+/* camera ir op codes*/
+#define CAM_IR_UPDATE                           (CAM_EXT_OPCODE_BASE + 0x2)
+#define CAM_IR_GET_POWER_STATE                  (CAM_EXT_OPCODE_BASE + 0x3)
+#define CAM_IR_LUMA_READ                        (CAM_EXT_OPCODE_BASE + 0x4)
+
 /* camera handle type */
 #define CAM_HANDLE_USER_POINTER                 1
 #define CAM_HANDLE_MEM_HANDLE                   2
