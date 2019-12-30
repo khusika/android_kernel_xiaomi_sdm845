@@ -1,4 +1,5 @@
 /* Copyright (c) 2015-2018, The Linux Foundation. All rights reserved.
+ * Copyright (C) 2019 XiaoMi, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -989,10 +990,10 @@ EXPORT_SYMBOL(tavil_mbhc_get_impedance);
 int tavil_mb_pull_down(struct snd_soc_codec *codec, bool active,
 		int value)
 {
-	int old_value = 0;
+	int oldv = 0;
 
 	if (active) {
-		old_value = snd_soc_read(codec, WCD934X_ANA_MICB2);
+		oldv = snd_soc_read(codec, WCD934X_ANA_MICB2);
 		snd_soc_update_bits(codec, WCD934X_ANA_MBHC_ELECT,
 				0x80, 0x00);
 		snd_soc_update_bits(codec, WCD934X_ANA_MICB2, 0xC0, 0xC0);
@@ -1002,7 +1003,7 @@ int tavil_mb_pull_down(struct snd_soc_codec *codec, bool active,
 				0x80, 0x80);
 	}
 
-	return old_value;
+	return oldv;
 }
 EXPORT_SYMBOL(tavil_mb_pull_down);
 

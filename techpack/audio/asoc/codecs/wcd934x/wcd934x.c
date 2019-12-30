@@ -1,5 +1,5 @@
 /* Copyright (c) 2015-2019, The Linux Foundation. All rights reserved.
- * Copyright (C) 2018 XiaoMi, Inc.
+ * Copyright (C) 2019 XiaoMi, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -5623,28 +5623,10 @@ static int tavil_compander_put(struct snd_kcontrol *kcontrol,
 		/* Set Gain Source Select based on compander enable/disable */
 		snd_soc_update_bits(codec, WCD934X_HPH_L_EN, 0x20,
 				(value ? 0x00:0x20));
-
-		/* Disable Compander Clock */
-		snd_soc_update_bits(codec, WCD934X_CDC_RX1_RX_PATH_CFG0, 0x02, 0x00);
-		snd_soc_update_bits(codec, WCD934X_CDC_COMPANDER1_CTL0, 0x04, 0x04);
-		snd_soc_update_bits(codec, WCD934X_CDC_COMPANDER1_CTL0, 0x02, 0x02);
-		snd_soc_update_bits(codec, WCD934X_CDC_COMPANDER1_CTL0, 0x02, 0x00);
-		snd_soc_update_bits(codec, WCD934X_CDC_COMPANDER1_CTL0, 0x01, 0x00);
-		snd_soc_update_bits(codec, WCD934X_CDC_COMPANDER1_CTL0, 0x04, 0x00);
-
 		break;
 	case COMPANDER_2:
 		snd_soc_update_bits(codec, WCD934X_HPH_R_EN, 0x20,
 				(value ? 0x00:0x20));
-
-		/* Disable Compander Clock */
-		snd_soc_update_bits(codec, WCD934X_CDC_RX2_RX_PATH_CFG0, 0x02, 0x00);
-		snd_soc_update_bits(codec, WCD934X_CDC_COMPANDER2_CTL0, 0x04, 0x04);
-		snd_soc_update_bits(codec, WCD934X_CDC_COMPANDER2_CTL0, 0x02, 0x02);
-		snd_soc_update_bits(codec, WCD934X_CDC_COMPANDER2_CTL0, 0x02, 0x00);
-		snd_soc_update_bits(codec, WCD934X_CDC_COMPANDER2_CTL0, 0x01, 0x00);
-		snd_soc_update_bits(codec, WCD934X_CDC_COMPANDER2_CTL0, 0x04, 0x00);
-
 		break;
 	case COMPANDER_3:
 	case COMPANDER_4:
@@ -6148,7 +6130,6 @@ static int tavil_rx_hph_mode_put(struct snd_kcontrol *kcontrol,
 	tavil->hph_mode = mode_val;
 	return 0;
 }
-
 static int codec_version_get(struct snd_kcontrol *kcontrol,
 				 struct snd_ctl_elem_value *ucontrol)
 {

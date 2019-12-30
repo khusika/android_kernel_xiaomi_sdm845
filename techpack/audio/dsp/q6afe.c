@@ -1,5 +1,5 @@
 /* Copyright (c) 2012-2019, The Linux Foundation. All rights reserved.
- * Copyright (C) 2018 XiaoMi, Inc.
+ * Copyright (C) 2019 XiaoMi, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -390,7 +390,6 @@ static int32_t afe_callback(struct apr_client_data *data, void *priv)
 			elliptic_process_apr_payload(data->payload);
 		else
 			pr_err("[ELUS]: payload is invalid");
-
 	} else if (data->payload_size) {
 		uint32_t *payload;
 		uint16_t port_id = 0;
@@ -1133,6 +1132,7 @@ fail_cmd:
 	return ret;
 }
 
+/* ELUS Begin */
 afe_ultrasound_state_t elus_afe = {
        .ptr_apr = &this_afe.apr,
        .ptr_status = &this_afe.status,
@@ -1141,6 +1141,7 @@ afe_ultrasound_state_t elus_afe = {
        .timeout_ms = TIMEOUT_MS,
 };
 EXPORT_SYMBOL(elus_afe);
+/* ELUS End */
 
 static void afe_send_cal_spkr_prot_tx(int port_id)
 {
