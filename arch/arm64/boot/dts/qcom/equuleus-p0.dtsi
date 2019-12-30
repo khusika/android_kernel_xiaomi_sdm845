@@ -1,6 +1,6 @@
 
 /* Copyright (c) 2016-2017, The Linux Foundation. All rights reserved.
- * Copyright (C) 2018 XiaoMi, Inc.
+ * Copyright (C) 2019 XiaoMi, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -11,12 +11,11 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  */
-
 #include <dt-bindings/gpio/gpio.h>
 #include "sdm845-pmic-overlay.dtsi"
 #include "sdm845-pinctrl-overlay.dtsi"
-#include "sdm845-xiaomi-common.dtsi"
 //#include "dipper-camera-sensor-mtp.dtsi"
+#include "xiaomi-sde-display.dtsi"
 #include "equuleus-p0-camera-sensor-mtp.dtsi"
 
 &qupv3_se10_i2c {
@@ -216,6 +215,28 @@
 	qcom,dsi-display-active;
 };
 
+&red_led {
+	linux,name = "white";
+	qcom,start-idx = <1>;
+	qcom,idx-len = <8>;
+	qcom,duty-pcts = [00 01 02 03 03
+			02 01 00];
+	qcom,lut-flags = <3>;
+	qcom,pause-lo = <0>;
+	qcom,pause-hi = <0>;
+	qcom,ramp-step-ms = <255>;
+	qcom,use-blink;
+	status = "okay";
+};
+
+&green_led {
+	status = "disabled";
+};
+
+&blue_led {
+	status = "disabled";
+};
+
 &sde_dp {
 	status = "disabled";
 };
@@ -370,6 +391,7 @@
 	qcom,fcc-cool-temp-delta = <2100000>;
 	qcom,auto-recharge-soc;
 	qcom,sw-jeita-enable;
+	qcom,dynamic-fv-enable;
 	qcom,thermal-mitigation
 				= <1800000 1600000 1400000 1200000 1000000 1000000 1000000>;
 	qcom,thermal-mitigation-dcp
@@ -403,6 +425,13 @@
 	qcom,fg-jeita-thresholds = <0 15 45 60>;
 	qcom,fg-esr-clamp-mohms = <60>;
 	qcom,fg-batt-temp-delta = <6>;
+	qcom,optimize-sram-seq = <
+		0x9 0x3 0x2
+		0xA 0x0 0x1
+		0xA 0x1 0x0
+		0xA 0x2 0x6
+		0xA 0x3 0x20
+		0xC 0x1 0x12>;
 	qcom,battery-data = <&mtp_batterydata>;
 	qcom,slope-limit-temp-threshold = <100>;
 	qcom,slope-limit-coeffs = <10 11 12 13>;
